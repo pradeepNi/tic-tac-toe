@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <Nav>
       <Ul>
-        <Li>myLink</Li>
+        <Li>Tic Tac Toe</Li>
       </Ul>
     </Nav>
   );
@@ -19,7 +19,7 @@ const Nav = styled.nav`
   height: 50px;
   background-color: black;
   color: white;
-  padding: 0 12px;
+  padding: 0 50px;
 `;
 const Ul = styled.ul`
   font-size: 17px;
