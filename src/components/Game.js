@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 let clickAudio = new Audio("ting.mp3");
 let errAudio = new Audio("error.wav");
+let winAudio = new Audio("gameover.mp3");
 let initialState = {
   10: "",
   11: "",
@@ -24,7 +25,7 @@ const Game = () => {
   const clickHandler = (s) => {
     if (!win && mat[s] === "") {
       setMat({ ...mat, [s]: turn });
-      setTurn(turn === "X" ? "0" : "X");
+      setTurn(turn === "X" ? "O" : "X");
       clickAudio.play();
     } else {
       errAudio.play();
@@ -37,67 +38,75 @@ const Game = () => {
   };
   const winHandler = () => {
     if (
-      (mat["00"] === "X" || mat["00"] === "0") &&
+      (mat["00"] === "X" || mat["00"] === "O") &&
       mat["00"] === mat["01"] &&
       mat["02"] === mat["00"] &&
       mat["02"] === mat["01"]
     ) {
       setWin(true);
+      winAudio.play();
     }
     if (
-      (mat["10"] === "X" || mat["10"] === "0") &&
+      (mat["10"] === "X" || mat["10"] === "O") &&
       mat["10"] === mat["11"] &&
       mat["12"] === mat["10"] &&
       mat["12"] === mat["11"]
     ) {
+      winAudio.play();
       setWin(true);
     }
     if (
-      (mat["20"] === "X" || mat["20"] === "0") &&
+      (mat["20"] === "X" || mat["20"] === "O") &&
       mat["20"] === mat["21"] &&
       mat["22"] === mat["20"] &&
       mat["22"] === mat["21"]
     ) {
+      winAudio.play();
       setWin(true);
     }
     if (
-      (mat["00"] === "X" || mat["00"] === "0") &&
+      (mat["00"] === "X" || mat["00"] === "O") &&
       mat["10"] === mat["00"] &&
       mat["20"] === mat["10"] &&
       mat["00"] === mat["20"]
     ) {
       setWin(true);
+      winAudio.play();
     }
     if (
-      (mat["01"] === "X" || mat["01"] === "0") &&
+      (mat["01"] === "X" || mat["01"] === "O") &&
       mat["11"] === mat["01"] &&
       mat["21"] === mat["11"] &&
       mat["01"] === mat["21"]
     ) {
+      winAudio.play();
       setWin(true);
     }
     if (
-      (mat["02"] === "X" || mat["02"] === "0") &&
+      (mat["02"] === "X" || mat["02"] === "O") &&
       mat["12"] === mat["02"] &&
       mat["22"] === mat["12"] &&
       mat["02"] === mat["22"]
     ) {
       setWin(true);
+      winAudio.play();
     }
     if (
-      (mat["00"] === "X" || mat["00"] === "0") &&
+      (mat["00"] === "X" || mat["00"] === "O") &&
       mat["11"] === mat["00"] &&
       mat["22"] === mat["11"] &&
       mat["00"] === mat["22"]
     ) {
+      winAudio.play();
       setWin(true);
     }
     if (
-      (mat["11"] === "X" || mat["11"] === "0") &&
+      (mat["11"] === "X" || mat["11"] === "O") &&
       mat["02"] === mat["11"] &&
       mat["11"] === mat["20"] &&
       mat["02"] === mat["20"]
     ) {
+      winAudio.play();
       setWin(true);
     }
   };
@@ -149,7 +158,7 @@ const Game = () => {
         <div>
           <Info>
             <span>
-              {!win ? `Turn for ${turn}` : turn === "X" ? `0 wins` : "X wins"}
+              {!win ? `Turn for ${turn}` : turn === "X" ? `O wins` : "X wins"}
             </span>
             <Reset onClick={() => resetHandler()}>Reset</Reset>
           </Info>
@@ -202,6 +211,9 @@ const Info = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  img {
+    margin-top: 50px;
+  }
 `;
 const Reset = styled.button`
   margin: 0 12px;
